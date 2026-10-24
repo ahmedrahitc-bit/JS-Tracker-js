@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>JavaScript Progress Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="JavaScript tracker home"><span class="brand-mark">JS</span><span><strong>JavaScript</strong><small>PROGRESS TRACKER</small></span></a>
+      <div class="top-actions"><span class="saved-state" id="saveStatus" role="status">● Saved on this device</span><button class="btn btn-quiet" id="resetProgressBtn" type="button">Reset</button><button class="btn btn-quiet" id="exportBtn" type="button">Export progress</button></div>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy"><p class="eyebrow">YOUR LEARNING DASHBOARD</p><h1>Build your JavaScript skills,<br><span>one topic at a time.</span></h1><p class="hero-sub">A checklist based on your roadmap. Your checked topics are pre-marked from your sheet.</p><div class="hero-pills"><span>26 learning sections</span><span id="topicPill">243 topics</span><span>Local progress saving</span></div></div>
+        <div class="hero-orb" aria-hidden="true"><div class="orb-inner">JS<span>{ }</span></div></div>
+      </section>
+      <section class="stats-grid" aria-label="Progress summary">
+        <article class="stat-card stat-main"><div class="stat-label">OVERALL PROGRESS</div><div class="stat-value"><span id="percentValue">0%</span><span class="stat-muted" id="doneValue">0 / 243 done</span></div><div class="progress-track"><div id="overallBar" class="progress-fill" style="width:0%"></div></div><p id="encouragement">Start with one small step.</p></article>
+        <article class="stat-card"><div class="stat-label">MUST LEARN</div><div class="stat-value" id="mustValue">0 / 0</div><p class="stat-note">Core JavaScript skills</p></article>
+        <article class="stat-card"><div class="stat-label">GOOD TO HAVE</div><div class="stat-value" id="goodValue">0 / 0</div><p class="stat-note">Useful extra knowledge</p></article>
+        <article class="stat-card"><div class="stat-label">REMAINING</div><div class="stat-value" id="remainingValue">0</div><p class="stat-note">Topics still on your list</p></article>
+      </section>
+      <section class="workspace">
+        <aside class="sidebar">
+          <div class="sidebar-heading"><span class="section-icon">▦</span><div><h2>Roadmap</h2><p>Choose a section</p></div></div>
+          <button class="section-nav active" data-section="all" type="button"><span class="nav-dot"></span><span>All topics</span><span class="nav-count" id="allCount">243</span></button>
+          <div id="sectionNav" class="section-nav-list"></div>
+          <div class="sidebar-tip"><span>✦</span><div><strong>Keep going</strong><p>Progress is saved in this browser automatically.</p></div></div>
+        </aside>
+        <section class="topic-area" aria-label="Topics">
+          <div class="topic-heading"><div><p class="eyebrow dark-eyebrow">ROADMAP CHECKLIST</p><h2 id="listTitle">All topics</h2><p id="listSubtitle">Tick a topic when you feel comfortable with it.</p></div><button class="btn btn-outline" id="resetFiltersBtn" type="button">Clear filters</button></div>
+          <div class="toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" aria-label="Search topics"></label><label class="filter-label" for="statusFilter">Status</label><select id="statusFilter"><option value="all">All topics</option><option value="todo">Not completed</option><option value="done">Completed</option></select><label class="filter-label" for="priorityFilter">Priority</label><select id="priorityFilter"><option value="all">All priorities</option><option value="Must">Must learn</option><option value="Good to have">Good to have</option><option value="Skip">Skip</option></select></div>
+          <div class="result-line"><span id="resultCount">Showing all topics</span><button id="collapseBtn" class="text-button" type="button">Collapse all</button></div>
+          <div id="topicList" class="topic-list"></div>
+          <div id="emptyState" class="empty-state" hidden><div class="empty-icon">⌕</div><h3>No topics found</h3><p>Try another search or clear your filters.</p><button class="btn btn-outline" id="emptyClearBtn" type="button">Clear filters</button></div>
+          <footer class="page-footer">Made for steady progress <span>·</span> Your progress stays in this browser</footer>
+        </section>
+      </section>
+    </main>
+  </div>
+  <dialog id="resetDialog" class="dialog"><form method="dialog"><div class="dialog-icon">↺</div><h2>Reset saved progress?</h2><p>This will restore the original TRUE/FALSE values from your sheet. This cannot be undone.</p><div class="dialog-actions"><button class="btn btn-outline" value="cancel">Cancel</button><button class="btn btn-danger" id="confirmResetBtn" value="reset">Reset progress</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
